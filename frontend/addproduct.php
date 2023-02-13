@@ -15,7 +15,7 @@
     <h1 class="navbar-brand">Product Add</h1>
     <span class="d-flex">
       <button class="btn btn-primary m-2" type="submit" form="product_form">Save</button>
-      <a class="btn btn-danger m-2" href="#" type="button">Cancel</a>
+      <a class="btn btn-danger m-2" href="product-list.php" type="button">Cancel</a>
     </span>
   </div>
 </nav>
@@ -28,7 +28,7 @@
             <label class="col-sm-2 col-form-label" for="sku">SKU</label>
             <div class="col-sm-auto was-validated">
             <input id="sku" type="text" class="form-control" name="sku" value="" required>
-            <div id="feedbackSku" class="invalid-feedback">
+            <div class="invalid-feedback">
             Please, provide an SKU
             </div>
             </div>
@@ -49,7 +49,7 @@
             <div class="col-sm-auto was-validated">
             <input id="price" type="number" min="0.01" step="0.01" class="form-control" name="price" value="" required>
             <div id="feedbackSku" class="invalid-feedback">
-            Please, provide the price
+            Please, provide the Price
             </div>
             </div>
             </div>

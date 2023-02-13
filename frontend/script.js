@@ -33,6 +33,10 @@ $("document").ready(function() {
         $("#dvd").hide();
         }
   })
+
+  // $().focusout(function(){
+  //   $this.show()
+  // });
 })
 
 

@@ -14,7 +14,7 @@
   <div class="container-fluid">
     <h1 class="navbar-brand">Product List</h1>
     <span class="d-flex">
-      <a href="addproduct.php" class="btn btn-primary m-2" type="submit">Add</a>
+      <a href="addproduct.php" class="btn btn-secondary m-2" type="submit">Add</a>
       <a id="delete-product-btn" class="btn btn-danger m-2" href="delete.php" type="button">Mass Delete</a>
     </span>
   </div>
@@ -22,19 +22,25 @@
 <hr class="mx-3 py-1">
 <div class="container p-5">
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
-    <div class="mt-2">
+<?php
+require_once '../backend/fetch.php';
+
+foreach ($fetch as $post) : ?>
+    <div class="col mt-2">
         <div class="card border-secondary shadow-lg">
             <div class="card-input">
                 <input type="checkbox" class="delete-checkbox form-check-input bg-secondary m-2" name="" form="delete-form">
             </div>
             <div class="card-body">
-                <p class="card-text text-center">JVC200123</p>
-                <p class="card-text text-center">Acme DISC</p>
-                <p class="card-text text-center">1.00 $</p>
-                <p class="card-text text-center">Size: 700 MB</p>
+                <p class="card-text text-center"><?=$post['sku']; ?></p>
+                <p class="card-text text-center"><?=$post['name']; ?></p>
+                <p class="card-text text-center"><?=$post['price']; ?></p>
+                <p class="card-text text-center"><?=$post['type']; ?></p>
+                <p class="card-text text-center"><?=$post['value']; ?></p>
             </div>
         </div>
     </div>
+    <?php endforeach; ?>
 </div>
 </div>
 <footer class="">

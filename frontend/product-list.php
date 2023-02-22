@@ -1,30 +1,7 @@
 <?php
 require_once '../backend/core/Database.php';
-// require_once '../backend/delete.php';
-include_once '../backend/products/Book.php';
-include_once '../backend/products/DVD.php';
-include_once '../backend/products/Furniture.php';
-
-$children = array();
-
-foreach(get_declared_classes() as $class ){
-    if(is_subclass_of( $class, 'productTemplate' )){
-    $children[] = $class;
-    }
-}
-?>
-
-<?php
-if(isset($_POST["please_delete"])){
-    
-  if(isset($_POST['delete'])){
-      foreach($_POST['delete'] as $SKU){
-          
-           $connection->query("DELETE FROM production WHERE sku='".$SKU."'");
-        
-      }
-  }
-}
+require_once '../backend/delete.php';
+include_once '../backend/products/productController.php';
 ?>
 
 
@@ -36,18 +13,18 @@ if(isset($_POST["please_delete"])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adding new product</title>
     <link href="bootstrap/bootstrap.css" rel="stylesheet">  <!-- Bootstrap -->
-    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles/styles.css" media="screen"> <!-- style directory -->
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap">
+    <link rel="stylesheet" href="styles.css" type="text/css" media="screen"> <!-- style directory -->
 </head>
 <body class="">
+<form method="POST" action="">
 <nav class="navbar">
   <div class="container-fluid">
     <h1 class="navbar-brand">Product List</h1>
     <span class="d-flex">
       <a href="addproduct.php" class="btn btn-secondary m-2" type="submit">Add</a>
-      <form method="post" action="">
       <input id="delete-product-btn" class="btn btn-danger m-2" 
-      type="submit" name="please_delete" value="Mass Delete">
+      type="submit" name="massDelete" value="Mass Delete">
     </span>
   </div>
 </nav>

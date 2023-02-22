@@ -26,15 +26,15 @@ class Furniture extends productTemplate{
     public function getInfo(){
          echo "
          <div class='col mt-5'>
-         <div class='card border-secondary shadow-lg'>
+         <div class='card border-0 cardStyle'>
          <div class='card-input'>
-             <input type='checkbox' class='delete-checkbox form-check-input bg-secondary 
-             m-2' name='delete[]' value='.$this->sku.' form='delete-form'>
+             <input type='checkbox' id='delete' class='delete-checkbox form-check-input bg-secondary 
+             m-2' name='delete[]' value='$this->sku'>
          </div>
          <div class='card-body'>
          <p class='card-text text-center'>$this->sku</p>
          <p class='card-text text-center'>$this->name</p>
-         <p class='card-text text-center'>$this->price.00 $</p>
+         <p class='card-text text-center'>$this->price $</p>
          <p class='card-text text-center'>Dimension: $this->height x $this->width x $this->length</p>
          </div>
          </div>

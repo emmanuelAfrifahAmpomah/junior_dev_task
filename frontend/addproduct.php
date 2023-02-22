@@ -11,7 +11,7 @@ require_once '../backend/formControlValidation.php';
     <title>Adding new product</title>
     <link href="bootstrap/bootstrap.css" rel="stylesheet">  <!-- Bootstrap -->
     <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles/styles.css" media="screen"> <!-- style directory -->
+    <link rel="stylesheet" href="styles.css" media="screen"> <!-- style directory -->
 </head>
 <body class="">
 <nav class="navbar">

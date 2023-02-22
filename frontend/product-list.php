@@ -1,3 +1,33 @@
+<?php
+require_once '../backend/core/Database.php';
+// require_once '../backend/delete.php';
+include_once '../backend/products/Book.php';
+include_once '../backend/products/DVD.php';
+include_once '../backend/products/Furniture.php';
+
+$children = array();
+
+foreach(get_declared_classes() as $class ){
+    if(is_subclass_of( $class, 'productTemplate' )){
+    $children[] = $class;
+    }
+}
+?>
+
+<?php
+if(isset($_POST["please_delete"])){
+    
+  if(isset($_POST['delete'])){
+      foreach($_POST['delete'] as $SKU){
+          
+           $connection->query("DELETE FROM production WHERE sku='".$SKU."'");
+        
+      }
+  }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,40 +45,39 @@
     <h1 class="navbar-brand">Product List</h1>
     <span class="d-flex">
       <a href="addproduct.php" class="btn btn-secondary m-2" type="submit">Add</a>
-      <a id="delete-product-btn" class="btn btn-danger m-2" href="delete.php" type="button">Mass Delete</a>
+      <form method="post" action="">
+      <input id="delete-product-btn" class="btn btn-danger m-2" 
+      type="submit" name="please_delete" value="Mass Delete">
     </span>
   </div>
 </nav>
 <hr class="mx-3 py-1">
 <div class="container p-5">
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
-<?php
-require_once '../backend/fetch.php';
-
-foreach ($fetch as $post) : ?>
-    <div class="col mt-2">
-        <div class="card border-secondary shadow-lg">
-            <div class="card-input">
-                <input type="checkbox" class="delete-checkbox form-check-input bg-secondary m-2" name="" form="delete-form">
-            </div>
-            <div class="card-body">
-                <p class="card-text text-center"><?=$post['sku']; ?></p>
-                <p class="card-text text-center"><?=$post['name']; ?></p>
-                <p class="card-text text-center"><?=$post['price']; ?></p>
-                <p class="card-text text-center"><?=$post['type']; ?></p>
-                <p class="card-text text-center"><?=$post['value']; ?></p>
-            </div>
-        </div>
-    </div>
-    <?php endforeach; ?>
-</div>
-</div>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+      <?php
+      $sql = "SELECT * FROM production ORDER BY sku";
+      $result = mysqli_query($connection, $sql);
+      $productCount = mysqli_num_rows($result);
+      if($productCount > 0){
+        while($row = mysqli_fetch_object($result)){
+          $key= array_search("$row->type",$children);
+          $ourNewProduct = new $children[$key]();
+          $ourNewProduct->setValues("$row->sku","$row->name", 
+          "$row->price","$row->size", "$row->height", 
+          "$row->width", "$row->length", "$row->weight");
+          echo $ourNewProduct->getInfo();
+        }
+      }
+      ?>
+      </div>
+  </div>
 <footer class="">
 <hr class="mx-3 py-1">
 <div class="text-center">
 <p>Scandiweb test assignment</p>
 </div>
 </footer>
+</form>
 </body>
 <script src="bootstrap\bootstrap.bundle.js"></script> <!-- bootstrap javascript -->
 </html>

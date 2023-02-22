@@ -1,78 +1,92 @@
 <?php
-require_once('core/Database.php');
+require_once 'core/Database.php';
 
-/*<?php
-if(empty($sku)){
-  echo "";
-}
-?>*/
+$sku=$name=$price=$type=$size=$height=$width=$length=$weight="";
 
-// initialize form values to empty string
-$sku="";
-$name="";
-$price="";
-$type="";
-$value="";
-
-$errorMessage ="";
-$successMessage ="";
-
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $sku = htmlspecialchars($_POST['sku']);
-    $name = htmlspecialchars($_POST['name']);
-    $price = htmlspecialchars($_POST['price']);
-    $type = htmlspecialchars($_POST['DVD' || 'Furnitre' || 'Book']);
+$errorMessage = array('sku'=>'', 'name'=>'', 'price'=>'');
 
 
-    $size = htmlspecialchars($_POST['size']);
-    $height = htmlspecialchars($_POST['height']);
-    $width = htmlspecialchars($_POST['width']);
-    $length = htmlspecialchars($_POST['length']);
-    $weight = htmlspecialchars($_POST['weight']);
-    $value = htmlspecialchars($_POST['']);
-
-    if($type == 'DVD') {
-        $value = $size;
-    }
-
-    elseif ($type == 'Furniture') {
-        $value = $height * $width * $length;
-    }
-
-    elseif ($type == 'Book') {
-        $value = $weight;
-    }
-
-    do {
-        if (empty($sku)||empty($name)||empty($price)||empty($type)||empty($value)) {
-            $errorMessage = 'All fields are required';
-            break;
+if(isset($_POST['submit'])){
+    if(empty($_POST['sku'])) {
+      $errorMessage['sku'] = 'Please, provide an SKU';
+    }else {
+        $sku = htmlspecialchars($_POST['sku']);
+      }
+  
+      if(empty($_POST['name'])) {
+        $errorMessage['name'] = 'Please, provide a name';
+      }else {
+          $name = htmlspecialchars($_POST['name']);
+          if(!preg_match('/^[a-zA-Z\s]+$/', $name)) {
+            $errorMessage['name'] = 'Name should be only alphabetic characters';
+          }
         }
+  
+        if(empty($_POST['price'])) {
+          $errorMessage['price'] = 'Please, provide a price';
+        }else {
+            $price = filter_var(($_POST['price']), FILTER_VALIDATE_FLOAT);
+          }
+  
+          if(!empty($_POST['productType'])) {
+            $type = htmlspecialchars($_POST['productType']);
+          }
+  
+          if(!empty($_POST['size'])) {
+            $size = htmlspecialchars($_POST['size']);
+          }
+  
+          if(!empty($_POST['height'])) {
+            $height = htmlspecialchars($_POST['height']);
+          }
+  
+          if(!empty($_POST['width'])) {
+            $width = htmlspecialchars($_POST['width']);
+          }
+  
+          if(!empty($_POST['length'])) {
+            $length = htmlspecialchars($_POST['length']);
+          }
+  
+          if(!empty($_POST['weight'])) {
+            $weight = htmlspecialchars($_POST['weight']);
+          }
 
-            // if there is no empty field then we proceed to create a new client to database
-            $sql = "INSERT INTO products (sku, name, price, type, value)" . 
-            "VALUES ('$sku', '$name', '$price', '$type', '$value')";
-            $result = $connection->query($sql);
+//   //see if there is a duplicate sku in the database already
+//   $sql = mysqli_query($connection, "SELECT sku FROM production WHERE sku='$sku'LIMIT 1");
+//   // count the output amount, if there's an sku match then the below value will be 1
+// if($sql) {
+//   $skuMatch = mysqli_num_rows($sql);
 
-        if (!$result) {
-            die("could not add data to database: " . $connection->connect_error);
-            break;
-        }
+//   if($skuMatch > 0){
+ 
+//    $errorMessage['sku'] = 'Sorry, sku already exists';
+//    exit();
+//  }
+// }
 
-            // after adding client, we initialize the data variables to empty values
+          $sql = mysqli_query($connection, "INSERT INTO production(sku, name, 
+          price, type, size, height, width, length, weight) 
+          VALUES('$sku', '$name', '$price', '$type', '$size', '$height', 
+          '$width', '$length', '$weight')") or die(mysqli_errno($connection));
 
-            $sku="";
-            $name="";
-            $price="";
-            $type="";
-            $value="";
+      // redirect the user after
+      header("location: product-list.php");
+      exit();
+  };
+ ?>
 
-            // we proceed to show a success message
-            $successMessage="Client successfully added to database";
+<?php
+include_once 'products/productTemplate.php';
+include_once 'products/Book.php';
+include_once 'products/DVD.php';
+include_once 'products/Furniture.php';
 
-            // redirects to list of clients page
-            header("location: product-list.php");
-            exit;
-        }while(false);
+$children = array();
+
+foreach(get_declared_classes() as $class ){
+    if(is_subclass_of( $class, 'productTemplate' )){
+    $children[] = $class;
+    }
 }
-
+?>

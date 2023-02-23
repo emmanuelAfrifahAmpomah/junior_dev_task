@@ -1,6 +1,6 @@
 body{
     font-family: Kumbh Sans, sans-serif;
-    background-color: rgb(186, 108, 12);
+    background-color:rgb(255, 218, 185);
 }
 
 hr {
@@ -8,12 +8,12 @@ hr {
 }
 
 .cardStyle {
-    background-color: rgb(199, 119, 25);
+    background-color: rgb(255, 225, 190);
     border: none;
 }
 
 .cardStyle:hover {
-    background-color: rgb(212, 122, 37);
+    background-color: rgb(255, 235, 200);
     border: solid;
     box-shadow: 2px 3px 18px 4px rgba(26, 25, 25, 0.1);
 }

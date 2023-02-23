@@ -14,7 +14,7 @@ include_once '../backend/products/productController.php';
     <title>Adding new product</title>
     <link href="bootstrap/bootstrap.css" rel="stylesheet">  <!-- Bootstrap -->
     <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap">
-    <link rel="stylesheet" href="styles.css" type="text/css" media="screen"> <!-- style directory -->
+    <link rel="stylesheet" href="styles/styles.css" type="text/css" media="screen"> <!-- style directory -->
 </head>
 <body class="">
 <form method="POST" action="">
@@ -33,10 +33,10 @@ include_once '../backend/products/productController.php';
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
       <?php
       $sql = "SELECT * FROM production ORDER BY sku";
-      $result = mysqli_query($connection, $sql);
-      $productCount = mysqli_num_rows($result);
+      $result = $connection->query($sql);
+      $productCount = $result->num_rows;
       if($productCount > 0){
-        while($row = mysqli_fetch_object($result)){
+        while($row = $result->fetch_object()){
           $key= array_search("$row->type",$children);
           $ourNewProduct = new $children[$key]();
           $ourNewProduct->setValues("$row->sku","$row->name", 

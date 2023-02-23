@@ -11,7 +11,7 @@ require_once '../backend/formControlValidation.php';
     <title>Adding new product</title>
     <link href="bootstrap/bootstrap.css" rel="stylesheet">  <!-- Bootstrap -->
     <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css" media="screen"> <!-- style directory -->
+    <link rel="stylesheet" href="styles/styles.css" media="screen"> <!-- style directory -->
 </head>
 <body class="">
 <nav class="navbar">
@@ -44,7 +44,7 @@ require_once '../backend/formControlValidation.php';
             <label class="col-sm-2 col-form-label" for="name">Name</label>
             <div class="col-sm-auto">
             <input id="name" type="text" class="form-control" name="name" 
-            value="<?= $name?>">
+            value="<?= $name?>" required>
             <div class='text-danger'>
               <?= $errorMessage['name']?>
               </div>
@@ -55,7 +55,7 @@ require_once '../backend/formControlValidation.php';
             <label class="col-sm-2 col-form-label" for="price">Price ($)</label>
             <div class="col-sm-auto">
             <input id="price" type="number" min="0.01" step="0.01" class="form-control" 
-            name="price" placeholder="Eg: 2.00" value="<?= $price?>">
+            name="price" placeholder="Eg: 2.00" value="<?= $price?>" required>
             <div class='text-danger'>
               <?= $errorMessage['price']?>
               </div>

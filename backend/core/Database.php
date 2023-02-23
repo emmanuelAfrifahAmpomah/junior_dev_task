@@ -20,9 +20,6 @@ class Database {
         $result = $this->connection->query($sql);
         if(!$result) die("could not extract data from database: " . $this->connection->connect_error);
 
-        $posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        return $posts;
-
     }
 
     public function getConnection() {

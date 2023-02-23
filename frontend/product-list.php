@@ -13,7 +13,7 @@ include_once '../backend/products/productController.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adding new product</title>
     <link href="bootstrap/bootstrap.css" rel="stylesheet">  <!-- Bootstrap -->
-    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/styles.css" type="text/css" media="screen"> <!-- style directory -->
 </head>
 <body class="">

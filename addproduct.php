@@ -1,5 +1,5 @@
 <?php 
-require_once '../backend/formControlValidation.php';
+require_once 'backend/formControlValidation.php';
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +20,7 @@ require_once '../backend/formControlValidation.php';
     <span class="d-flex">
       <button class="btn btn-secondary m-2" name="submit" type="submit" 
       form="product_form">Save</button>
-      <a class="btn btn-danger m-2" href="product-list.php" type="button">Cancel</a>
+      <a class="btn btn-danger m-2" href="index.php" type="button">Cancel</a>
     </span>
   </div>
 </nav>

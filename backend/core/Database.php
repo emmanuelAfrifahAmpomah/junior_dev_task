@@ -16,7 +16,7 @@ class Database {
 
     // Fetching Data from Database
     public function fetchData() {
-        $sql = "SELECT * FROM production ORDER BY sku" ;
+        $sql = "SELECT * FROM productions ORDER BY sku" ;
         $result = $this->connection->query($sql);
         if(!$result) die("could not extract data from database: " . $this->connection->connect_error);
 

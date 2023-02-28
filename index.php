@@ -1,7 +1,7 @@
 <?php
-require_once '../backend/core/Database.php';
-require_once '../backend/delete.php';
-include_once '../backend/products/productController.php';
+require_once 'backend/core/Database.php';
+require_once 'backend/delete.php';
+include_once 'backend/products/productController.php';
 ?>
 
 
@@ -32,7 +32,7 @@ include_once '../backend/products/productController.php';
 <div class="container p-5">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
       <?php
-      $sql = "SELECT * FROM production ORDER BY sku";
+      $sql = "SELECT * FROM productions ORDER BY sku";
       $result = $connection->query($sql);
       $productCount = $result->num_rows;
       if($productCount > 0){

@@ -8,7 +8,7 @@ if(isset($_POST['massDelete'])) {
         if(isset($_POST['delete'])){
         foreach($_POST['delete'] as $SKU){
             
-            $result = $connection->query("DELETE FROM production WHERE sku='".$SKU."'");
+            $result = $connection->query("DELETE FROM productions WHERE sku='".$SKU."'");
           
         }
     }

@@ -16,16 +16,17 @@ include_once 'backend/products/productController.php';
     <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/styles.css" type="text/css" media="screen"> <!-- style directory -->
 </head>
-<body class="">
+<body>
 <form method="POST" action="">
 <nav class="navbar">
   <div class="container-fluid">
     <h1 class="navbar-brand">Product List</h1>
-    <span class="d-flex">
-      <a href="addproduct.php" class="btn btn-secondary m-2" type="submit">Add</a>
-      <input id="delete-product-btn" class="btn btn-danger m-2" 
-      type="submit" name="massDelete" value="Mass Delete">
-    </span>
+    <div class="d-flex">
+      <button href="addproduct.php" class="btn btn-secondary m-2 me-3" type="button" id="ADD" 
+      name="ADD" onclick="window.location.href='addproduct.php'">ADD</button>
+      <button id="delete-product-btn" class="btn btn-danger m-2" 
+      type="submit" name="massDelete" value="Mass Delete">MASS DELETE</button>
+</div>
   </div>
 </nav>
 <hr class="mx-3 py-1">

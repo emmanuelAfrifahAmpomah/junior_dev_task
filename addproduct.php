@@ -18,7 +18,7 @@ require_once 'backend/formControlValidation.php';
   <div class="container-fluid">
     <h1 class="navbar-brand">Product Add</h1>
     <span class="d-flex">
-      <button class="btn btn-secondary m-2" name="submit" type="submit" 
+      <button class="btn btn-secondary m-2 me-3" name="submit" type="submit" 
       form="product_form">Save</button>
       <a class="btn btn-danger m-2" href="index.php" type="button">Cancel</a>
     </span>
@@ -84,7 +84,7 @@ require_once 'backend/formControlValidation.php';
         <div class="row mb-3">
           <label class="col-sm-2 col-form-label" for="size">Size (MB)</label>
           <div class="col-sm-auto">
-          <input id="size sizeMB" type="number" min="1" step="1" class="form-control" 
+          <input id="size" type="number" min="1" step="1" class="form-control" 
           name="size" value="<?= $size?>" required>
           <div class="invalid-feedback">Please, provide the size</div>
           </div>

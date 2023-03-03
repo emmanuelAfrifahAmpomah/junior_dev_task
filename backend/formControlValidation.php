@@ -6,7 +6,7 @@ $sku=$name=$price=$type=$size=$height=$width=$length=$weight="";
 $errorMessage = array('sku'=>'', 'name'=>'', 'price'=>'');
 
 
-if(isset($_POST['submit'])){
+if($_SERVER['REQUEST_METHOD']=='POST'){
 
   $sku = htmlspecialchars($_POST['sku']);
   $name = htmlspecialchars($_POST['name']);
@@ -18,7 +18,7 @@ if(isset($_POST['submit'])){
   $length = htmlspecialchars($_POST['length']);
   $weight = htmlspecialchars($_POST['weight']);
 
-  if (empty($sku) || empty($name) || empty($price) || !preg_match('/^[a-zA-Z\s]+$/', $name)
+  if (empty($sku) || empty($name) || empty($price) || !preg_match('/^[A-Za-z0-9\s]+$/', $name)
   || (empty($size) xor (empty($height) || empty($width) || empty($length)) xor empty($weight))) {
     $errorMessage['name'] = 'Please, provide a name';
     $errorMessage['price'] = 'Please, provide a price';

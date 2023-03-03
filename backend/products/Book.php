@@ -23,8 +23,7 @@ class Book extends productTemplate{
         $this->weight = $weight;
     }
 
-    // '<div class="card-box-order-mine p-2 bd-highlight">';
-    //<input class='delete-checkbox' type='checkbox' name="delete[]" value='.$this->sku.'>';
+
     public function getInfo() {
         echo "
         <div class='col mt-5'>

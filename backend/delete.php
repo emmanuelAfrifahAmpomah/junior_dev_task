@@ -12,8 +12,7 @@ if(isset($_POST['massDelete'])) {
           
         }
     }
-    // header("location: product-list.php");
-    // exit;
+    header("location: index.php");
   
     }
   }

@@ -3,14 +3,6 @@
 require_once 'productTemplate.php';
 
 class DVD extends productTemplate{
-    private $sku;
-    private $name;
-    private $price;
-    private $size;
-    private $height;
-    private $width;
-    private $length;
-    private $weight;
     
     public function setValues($sku, $name, $price, $size, $height, $width, $length, $weight){
         $this->sku = $sku;
